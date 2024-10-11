@@ -1,0 +1,50 @@
+[0.286s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['C:\\Python38\\Scripts\\colcon', 'list', '-p', '--base-paths', 'c:\\Users\\nabet\\Desktop\\GUI\\ros2'][0m
+[0.286s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(base_paths=['c:\\Users\\nabet\\Desktop\\GUI\\ros2'], build_base='build', ignore_user_meta=False, log_base=None, log_level=None, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0x0000023206B817F0>>, metas=['./colcon.meta'], names_only=False, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, paths=None, paths_only=True, topological_graph=False, topological_graph_density=False, topological_graph_dot=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, topological_graph_legend=False, topological_order=False, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0x0000023206B817F0>, verb_name='list', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x0000023206B956A0>)[0m
+[0.378s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[0.379s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[0.379s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[0.379s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[0.379s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[0.380s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in 'c:\Users\nabet\Desktop\GUI\ros2'
+[0.381s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extensions ['ignore', 'ignore_ament_install']
+[0.381s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extension 'ignore'
+[0.382s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extension 'ignore_ament_install'
+[0.382s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extensions ['colcon_pkg']
+[0.382s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extension 'colcon_pkg'
+[0.382s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extensions ['colcon_meta']
+[0.382s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extension 'colcon_meta'
+[0.382s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extensions ['ros']
+[0.382s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extension 'ros'
+[0.411s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extensions ['cmake', 'python']
+[0.411s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extension 'cmake'
+[0.411s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extension 'python'
+[0.411s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extensions ['python_setup_py']
+[0.411s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2) by extension 'python_setup_py'
+[0.411s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\log) by extensions ['ignore', 'ignore_ament_install']
+[0.411s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\log) by extension 'ignore'
+[0.411s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\log) ignored
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extensions ['ignore', 'ignore_ament_install']
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extension 'ignore'
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extension 'ignore_ament_install'
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extensions ['colcon_pkg']
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extension 'colcon_pkg'
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extensions ['colcon_meta']
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extension 'colcon_meta'
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extensions ['ros']
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extension 'ros'
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extensions ['cmake', 'python']
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extension 'cmake'
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extension 'python'
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extensions ['python_setup_py']
+[0.412s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src) by extension 'python_setup_py'
+[0.413s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.413s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg) by extension 'ignore'
+[0.413s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg) by extension 'ignore_ament_install'
+[0.413s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg) by extensions ['colcon_pkg']
+[0.413s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg) by extension 'colcon_pkg'
+[0.413s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg) by extensions ['colcon_meta']
+[0.413s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg) by extension 'colcon_meta'
+[0.413s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg) by extensions ['ros']
+[0.413s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg) by extension 'ros'
+[0.418s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'c:\Users\nabet\Desktop\GUI\ros2\src\ROTAS_pkg' with type 'ros.ament_cmake' and name 'ROTAS_pkg'[0m
+[0.418s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
