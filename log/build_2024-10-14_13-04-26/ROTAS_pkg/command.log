@@ -1,4 +1,0 @@
-Invoking command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
-Invoked command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
-Invoking command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
-Invoked command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release

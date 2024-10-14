@@ -1,6 +1,0 @@
-source;share\ROTAS_pkg\hook\cmake_prefix_path.ps1
-source;share\ROTAS_pkg\hook\cmake_prefix_path.bat
-source;share\ROTAS_pkg\hook\cmake_prefix_path.dsv
-source;share/ROTAS_pkg/local_setup.bat
-source;share/ROTAS_pkg/local_setup.dsv
-source;share/ROTAS_pkg/local_setup.ps1

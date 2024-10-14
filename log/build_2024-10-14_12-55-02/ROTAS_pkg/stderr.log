@@ -1,6 +1,0 @@
-CMake Error at CMakeLists.txt:39 (install):
-  install TARGETS given target "talker" which does not exist.
-
-
-WARNING: Package name "ROTAS_pkg" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
-CMake Configure step failed.  Build files cannot be regenerated correctly.

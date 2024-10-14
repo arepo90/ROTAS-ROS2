@@ -1,8 +1,0 @@
-C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/uninstall.dir
-C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/ROTAS_pkg_uninstall.dir
-C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/talker.dir
-C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/relay.dir
-C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/RUN_TESTS.dir
-C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/INSTALL.dir
-C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/ALL_BUILD.dir
-C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/ZERO_CHECK.dir
