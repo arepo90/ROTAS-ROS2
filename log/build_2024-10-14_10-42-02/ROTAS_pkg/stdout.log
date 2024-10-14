@@ -1,0 +1,30 @@
+Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  1>Checking Build System
+  Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+  ros2_relay.cpp
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(142,49): warning C4838: conversion from 'unsigned __int64' to 'int' requires a narrowing conversion [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(142,51): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(169,34): warning C4838: conversion from 'unsigned __int64' to 'int' requires a narrowing conversion [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(169,138): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(174,8): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+  relay.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\relay.exe
+  Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+  talker.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\talker.exe
+  Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/lib/ROTAS_pkg/talker.exe
+-- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/lib/ROTAS_pkg/relay.exe
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/package_run_dependencies/ROTAS_pkg
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/parent_prefix_path/ROTAS_pkg
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/ament_prefix_path.bat
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/ament_prefix_path.dsv
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/path.bat
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/path.dsv
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/local_setup.bat
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/local_setup.dsv
+-- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/package.dsv
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/packages/ROTAS_pkg
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/cmake/ROTAS_pkgConfig.cmake
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/cmake/ROTAS_pkgConfig-version.cmake
+-- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/package.xml

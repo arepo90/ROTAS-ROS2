@@ -1,0 +1,30 @@
+[0.422s] Invoking command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[0.609s] Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
+[0.609s] Copyright (C) Microsoft Corporation. All rights reserved.
+[0.609s] 
+[1.234s]   1>Checking Build System
+[1.547s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[1.781s]   ros2_relay.cpp
+[11.484s]   relay.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\relay.exe
+[11.797s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[12.000s]   ros2_talker.cpp
+[14.343s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_talker.cpp(23,1): warning C4305: '+=': truncation from 'double' to 'float' [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\talker.vcxproj]
+[18.781s]   talker.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\talker.exe
+[18.875s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[19.015s] Invoked command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[19.062s] Invoking command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[19.140s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/lib/ROTAS_pkg/talker.exe
+[19.172s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/package_run_dependencies/ROTAS_pkg
+[19.187s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/parent_prefix_path/ROTAS_pkg
+[19.187s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/ament_prefix_path.bat
+[19.187s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/ament_prefix_path.dsv
+[19.203s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/path.bat
+[19.218s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/path.dsv
+[19.218s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/local_setup.bat
+[19.234s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/local_setup.dsv
+[19.250s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/package.dsv
+[19.265s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/packages/ROTAS_pkg
+[19.265s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/cmake/ROTAS_pkgConfig.cmake
+[19.281s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/cmake/ROTAS_pkgConfig-version.cmake
+[19.281s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/package.xml
+[19.281s] Invoked command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release

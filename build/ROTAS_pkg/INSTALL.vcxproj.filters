@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\CMakeFiles\6c6dc4faa8165380c4c842172c883799\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5B004BD2-FF3F-3F6D-BD69-A029279E27D7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

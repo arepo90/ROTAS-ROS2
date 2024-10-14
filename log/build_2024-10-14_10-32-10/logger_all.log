@@ -1,0 +1,127 @@
+[0.531s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['C:\\Python38\\Scripts\\colcon', 'build', '--merge-install', '--event-handlers', 'console_direct+', '--packages-select', 'ROTAS_pkg'][0m
+[0.531s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=['console_direct+'], executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x000001F1686F0BB0>>, merge_install=True, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=['ROTAS_pkg'], packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=16, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x000001F1686F0BB0>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x000001F168831EB0>)[0m
+[0.691s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[0.691s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[0.691s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[0.691s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[0.691s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) discover
+[0.691s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[0.691s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2'
+[0.692s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.692s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore'
+[0.692s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore_ament_install'
+[0.692s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_pkg']
+[0.692s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_pkg'
+[0.693s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_meta']
+[0.693s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_meta'
+[0.693s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ros']
+[0.693s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ros'
+[0.724s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['cmake', 'python']
+[0.724s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'cmake'
+[0.724s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python'
+[0.724s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['python_setup_py']
+[0.725s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python_setup_py'
+[0.725s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.725s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extension 'ignore'
+[0.725s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) ignored
+[0.726s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.727s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extension 'ignore'
+[0.727s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) ignored
+[0.727s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.727s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extension 'ignore'
+[0.727s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) ignored
+[0.727s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.727s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore'
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore_ament_install'
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_pkg']
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_pkg'
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_meta']
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_meta'
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ros']
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ros'
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['cmake', 'python']
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'cmake'
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python'
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['python_setup_py']
+[0.728s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python_setup_py'
+[0.729s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ROTAS_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.729s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ROTAS_pkg) by extension 'ignore'
+[0.729s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ROTAS_pkg) by extension 'ignore_ament_install'
+[0.729s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ROTAS_pkg) by extensions ['colcon_pkg']
+[0.729s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ROTAS_pkg) by extension 'colcon_pkg'
+[0.729s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ROTAS_pkg) by extensions ['colcon_meta']
+[0.729s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ROTAS_pkg) by extension 'colcon_meta'
+[0.729s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ROTAS_pkg) by extensions ['ros']
+[0.729s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ROTAS_pkg) by extension 'ros'
+[0.736s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\ROTAS_pkg' with type 'ros.ament_cmake' and name 'ROTAS_pkg'[0m
+[0.736s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
+[0.736s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) discover
+[0.737s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) using defaults
+[0.737s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) discover
+[0.737s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) using defaults
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ROTAS_pkg' build argument 'cmake_args' from command line to 'None'
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ROTAS_pkg' build argument 'cmake_target' from command line to 'None'
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ROTAS_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ROTAS_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ROTAS_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ROTAS_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ROTAS_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ROTAS_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ROTAS_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.795s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'ROTAS_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\nabet\\Desktop\\GUI\\ROTAS-ROS2\\build\\ROTAS_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\nabet\\Desktop\\GUI\\ROTAS-ROS2\\install', 'merge_install': True, 'path': 'C:\\Users\\nabet\\Desktop\\GUI\\ROTAS-ROS2\\src\\ROTAS_pkg', 'symlink_install': False, 'test_result_base': None}[0m
+[0.796s] [34mcolcon.colcon_core.executor[0m [1;30mINFO[0m Executing jobs using 'parallel' executor
+[0.798s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete[0m
+[0.799s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg' with build type 'ament_cmake'
+[0.800s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg'
+[0.803s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_core.shell.sh': Not used on Windows systems
+[1.282s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release[0m
+[15.693s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release[0m
+[15.737s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release[0m
+[15.878s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(ROTAS_pkg)
+[15.881s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release[0m
+[15.893s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install' for CMake module files
+[15.897s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install' for CMake config files
+[15.901s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ROTAS_pkg', 'cmake_prefix_path')
+[15.901s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\hook\cmake_prefix_path.ps1'
+[15.903s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\hook\cmake_prefix_path.bat'
+[15.906s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\hook\cmake_prefix_path.dsv'
+[15.908s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\bin'
+[15.909s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\bin'
+[15.909s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\lib\pkgconfig\ROTAS_pkg.pc'
+[15.910s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\Lib\site-packages'
+[15.910s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\Scripts'
+[15.911s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\package.ps1'
+[15.915s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\package.bat'
+[15.917s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\package.dsv'
+[15.920s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\colcon-core\packages\ROTAS_pkg)
+[15.923s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(ROTAS_pkg)
+[15.923s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install' for CMake module files
+[15.926s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install' for CMake config files
+[15.928s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ROTAS_pkg', 'cmake_prefix_path')
+[15.928s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\hook\cmake_prefix_path.ps1'
+[15.930s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\hook\cmake_prefix_path.bat'
+[15.932s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\hook\cmake_prefix_path.dsv'
+[15.934s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\bin'
+[15.934s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\bin'
+[15.934s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\lib\pkgconfig\ROTAS_pkg.pc'
+[15.934s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\Lib\site-packages'
+[15.934s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\Scripts'
+[15.935s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\package.ps1'
+[15.937s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\package.bat'
+[15.940s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\ROTAS_pkg\package.dsv'
+[15.942s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\share\colcon-core\packages\ROTAS_pkg)
+[15.943s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mclosing loop[0m
+[15.944s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mloop closed[0m
+[15.944s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete finished with '0'[0m
+[15.944s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoining thread[0m
+[15.955s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.notify2': 'notify2' not found
+[15.955s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.notify_send': Not used on non-Linux systems
+[15.956s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[15.956s] [34mcolcon.colcon_notification.desktop_notification[0m [1;30mINFO[0m Sending desktop notification using 'win32'
+[21.036s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoined thread[0m
+[21.037s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\local_setup.ps1'
+[21.042s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\_local_setup_util_ps1.py'
+[21.053s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\setup.ps1'
+[21.061s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\local_setup.bat'
+[21.065s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\_local_setup_util_bat.py'
+[21.068s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\install\setup.bat'

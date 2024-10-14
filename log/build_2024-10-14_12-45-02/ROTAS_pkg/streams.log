@@ -1,0 +1,34 @@
+[0.422s] Invoking command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[0.578s] Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
+[0.578s] Copyright (C) Microsoft Corporation. All rights reserved.
+[0.578s] 
+[1.250s]   1>Checking Build System
+[1.563s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[1.797s]   ros2_relay.cpp
+[5.703s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(139,49): warning C4838: conversion from 'unsigned __int64' to 'int' requires a narrowing conversion [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[5.703s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(139,51): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[5.703s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(166,34): warning C4838: conversion from 'unsigned __int64' to 'int' requires a narrowing conversion [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[5.703s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(166,138): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[5.703s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(171,8): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[14.391s]   relay.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\relay.exe
+[14.578s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[14.813s]   talker.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\talker.exe
+[15.000s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[15.156s] Invoked command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[15.203s] Invoking command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[15.219s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/lib/ROTAS_pkg/talker.exe
+[15.281s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/lib/ROTAS_pkg/relay.exe
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/package_run_dependencies/ROTAS_pkg
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/parent_prefix_path/ROTAS_pkg
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/ament_prefix_path.bat
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/ament_prefix_path.dsv
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/path.bat
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/path.dsv
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/local_setup.bat
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/local_setup.dsv
+[15.297s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/package.dsv
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/packages/ROTAS_pkg
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/cmake/ROTAS_pkgConfig.cmake
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/cmake/ROTAS_pkgConfig-version.cmake
+[15.297s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/package.xml
+[15.313s] Invoked command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release

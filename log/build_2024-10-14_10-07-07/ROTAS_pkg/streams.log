@@ -1,0 +1,52 @@
+[0.406s] Invoking command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[0.437s] CMake is re-running because C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/generate.stamp is out-of-date.
+[0.437s]   the file 'C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt'
+[0.437s]   is newer than 'C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg/CMakeFiles/generate.stamp.depend'
+[0.437s]   result='-1'
+[0.453s] -- Selecting Windows SDK version 10.0.19041.0 to target Windows 10.0.22631.
+[0.484s] -- Found ament_cmake: 2.5.2 (C:/dev/ros2_jazzy/share/ament_cmake/cmake)
+[1.203s] -- Found rclcpp: 28.1.3 (C:/dev/ros2_jazzy/share/rclcpp/cmake)
+[1.281s] -- Found rosidl_generator_c: 4.6.3 (C:/dev/ros2_jazzy/share/rosidl_generator_c/cmake)
+[1.312s] -- Found rosidl_generator_cpp: 4.6.3 (C:/dev/ros2_jazzy/share/rosidl_generator_cpp/cmake)
+[1.343s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.390s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.547s] -- Found rmw_implementation_cmake: 7.3.1 (C:/dev/ros2_jazzy/share/rmw_implementation_cmake/cmake)
+[1.547s] -- Found rmw_fastrtps_cpp: 8.4.1 (C:/dev/ros2_jazzy/share/rmw_fastrtps_cpp/cmake)
+[1.718s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.875s] -- Found std_msgs: 5.3.5 (C:/dev/ros2_jazzy/share/std_msgs/cmake)
+[1.906s] -- OpenCV ARCH: x64
+[1.906s] -- OpenCV RUNTIME: vc16
+[1.906s] -- OpenCV STATIC: OFF
+[1.922s] -- Found OpenCV 4.10.0 in C:/opt/opencv/build/x64/vc16/lib
+[1.922s] -- You might need to add C:\opt\opencv\build\x64\vc16\bin to your PATH to be able to run your applications.
+[2.140s] WARNING: Package name "ROTAS_pkg" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+[2.187s] -- Configuring done (1.7s)
+[2.984s] -- Generating done (0.8s)
+[3.015s] -- Build files have been written to: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/build/ROTAS_pkg
+[3.125s] Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
+[3.125s] Copyright (C) Microsoft Corporation. All rights reserved.
+[3.125s] 
+[3.687s]   1>Checking Build System
+[3.968s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[4.156s]   relay.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\relay.exe
+[4.312s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[4.406s]   talker.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\talker.exe
+[4.500s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[4.609s] Invoked command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[4.656s] Invoking command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[4.703s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/lib/ROTAS_pkg/talker.exe
+[4.703s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/lib/ROTAS_pkg/relay.exe
+[4.718s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/package_run_dependencies/ROTAS_pkg
+[4.718s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/parent_prefix_path/ROTAS_pkg
+[4.718s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/ament_prefix_path.bat
+[4.718s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/ament_prefix_path.dsv
+[4.718s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/path.bat
+[4.718s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/environment/path.dsv
+[4.718s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/local_setup.bat
+[4.718s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/local_setup.dsv
+[4.718s] -- Installing: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/package.dsv
+[4.734s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ament_index/resource_index/packages/ROTAS_pkg
+[4.734s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/cmake/ROTAS_pkgConfig.cmake
+[4.734s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/cmake/ROTAS_pkgConfig-version.cmake
+[4.734s] -- Up-to-date: C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/install/share/ROTAS_pkg/package.xml
+[4.734s] Invoked command in 'C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '0': C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release

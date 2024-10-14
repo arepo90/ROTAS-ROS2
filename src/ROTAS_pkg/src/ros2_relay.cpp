@@ -1,11 +1,17 @@
+#ifndef NOMINMAX
+    #define NOMINMAX
+#endif
+
 #include <opencv2/opencv.hpp>
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
 #include <iostream>
+#include <string>
 #include <vector>
-#include <rclcpp/rclcpp.hpp>
-#include <std_msgs/msg/int32_multi_array.hpp>
+#include <thread>
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/float32_multi_array.hpp"
 #pragma comment(lib, "ws2_32.lib")
 
 using namespace std;
@@ -13,19 +19,35 @@ using namespace cv;
 
 string SERVER_IP = "127.0.0.1";
 vector<int> CAMS{0};
-int PORT = 8080, MODE = 0, WIDTH = 1280, HEIGHT = 720, QUALITY = 75, ROS2_PACKET_SIZE = 5;
+int PORT = 8000, MODE = 0, WIDTH = 1280, HEIGHT = 720, QUALITY = 75;
 bool VERBOSE = false;
-vector<int> ros2_data(ROS2_PACKET_SIZE, 0);
+vector<float> ROS2_PACKETS(3, 0.0f);
 
-int args(int argc, char* argv[]);
+bool args(int argc, char* argv[]);
 bool sendPacket(SOCKET socket_fd, vector<uchar>& buffer, int packetNumber);
 bool handshake(SOCKET socket_fd);
 void cnlog(const string& str, int lvl);
-void ros2Callback(const std_msgs::msg::Int32MultiArray::SharedPtr msg);
-void ros2Thread();
+
+void floatCallback(const std_msgs::msg::Float32MultiArray::SharedPtr msg){
+    ROS2_PACKETS = msg->data;
+    stringstream stream;
+    stream << "[ros2] ";
+    for(int i = 0; i < ROS2_PACKETS.size(); i++){
+        stream << i << ":" << ROS2_PACKETS[i] << " ";
+    }
+    cnlog(stream.str(), 2);
+}
+
+void ros2Thread(){
+    rclcpp::init(0, nullptr);
+    auto node = rclcpp::Node::make_shared("webcam_client_node");
+    auto subscription = node->create_subscription<std_msgs::msg::Float32MultiArray>("float_topic", 10, floatCallback);
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+}
 
 int main(int argc, char* argv[]){
-    if (args(argc, argv)) return -1;
+    if(args(argc, argv)) return -1;
     cnlog("[i] Initializing client...", 2);
 
     WSADATA wsaData;
@@ -40,11 +62,8 @@ int main(int argc, char* argv[]){
         return -1;
     }
 
-    cnlog("[i] Initializing ros2 node...", 2);
-    thread rosThread(ros2Thread);
-
     cnlog("[i] Initializing capture devices...", 2);
-    for (int i = 0; i < CAMS.size(); i++) {
+    for(int i = 0; i < CAMS.size(); i++){
         sources[i].open(CAMS[i]);
         if(!sources[i].isOpened()){
             cnlog("[e] Could not open source " + to_string(i), 0);
@@ -64,8 +83,8 @@ int main(int argc, char* argv[]){
         server_addr.sin_family = AF_INET;
         server_addr.sin_port = htons(PORT + i);
         inet_pton(AF_INET, SERVER_IP.c_str(), &server_addr.sin_addr);
-
         connect(socket_fds[i], (sockaddr*)&server_addr, sizeof(server_addr));
+
         if(i == 0 && !handshake(socket_fds[i])){
             for(int j = 0; j < CAMS.size(); j++){
                 closesocket(socket_fds[i]);
@@ -75,6 +94,8 @@ int main(int argc, char* argv[]){
             return -1;
         }
     }
+
+    thread rosThread(ros2Thread);
 
     cnlog("[i] Starting stream...", 2);
     while(1){
@@ -106,11 +127,11 @@ int main(int argc, char* argv[]){
     return 0;
 }
 
-void cnlog(const string& str, int lvl) {
+void cnlog(const string& str, int lvl){
     if(VERBOSE || lvl == 0) cout << str << '\n';
 }
 
-bool handshake(SOCKET socket_fd) {
+bool handshake(SOCKET socket_fd){
     cnlog("[i] Starting handshake...", 2);
 
     int handshakeMessage[] = {0, MODE, CAMS.size()}, handshakeAck = 0;
@@ -124,13 +145,11 @@ bool handshake(SOCKET socket_fd) {
             if(WSAGetLastError() == WSAEWOULDBLOCK){
                 Sleep(50);
                 continue; 
-            }
-            else{
+            } else {
                 cnlog("[e] Did not receive handshake acknowledgment. Code: " + to_string(WSAGetLastError()), 0);
                 return false;
             }
-        }
-        else break;
+        } else break;
     }
     if(handshakeAck != 400){
         cnlog("[e] Invalid handshake response: " + to_string(handshakeAck), 0);
@@ -142,10 +161,7 @@ bool handshake(SOCKET socket_fd) {
 }
 
 bool sendPacket(SOCKET socket_fd, vector<uchar>& buffer, int packet_number){
-    int metadata[ROS2_PACKET_SIZE+2] = {buffer.size(), packet_number};
-    for(int i = 0; i < ROS2_PACKET_SIZE; i++){
-        metadata[i+2] = ros2_data[i];
-    }
+    int metadata[] = {buffer.size(), packet_number, int(ROS2_PACKETS[0]), int(ROS2_PACKETS[1]), int(ROS2_PACKETS[2])};
     if(send(socket_fd, (char*)metadata, sizeof(metadata), 0) == SOCKET_ERROR){
         cnlog("[e] Metadata send failed. Code: " + to_string(WSAGetLastError()), 0);
         return false;
@@ -157,28 +173,7 @@ bool sendPacket(SOCKET socket_fd, vector<uchar>& buffer, int packet_number){
     return true;
 }
 
-void ros2Callback(const std_msgs::msg::Int32MultiArray::SharedPtr msg){
-    if(msg->data.size() == R0S2_PACKET_SIZE){
-        ros_received_floats = msg->data;
-        stringstream stream;
-        stream << "[ros2 recv] ";
-        for(int i = 0; i < ROS2_PACKET_SIZE; i++){
-            stream << i << ": " << ros2_data[i] << " ";
-        }
-        cnlog(stream.str(), 2);
-    }
-    else cnlog("[w] ros2 topic sync discrepancy", 1);
-}
-
-void ros2Thread(){
-    rclcpp::init(0, nullptr);
-    auto node = rclcpp::Node::make_shared("relay_node");
-    auto subscription = node->create_subscription<std_msgs::msg::Int32MultiArray>("int_topic", 10, ros2Callback);
-    rclcpp::spin(node);
-    rclcpp::shutdown();
-}
-
-int args(int argc, char* argv[]) {
+bool args(int argc, char* argv[]){
     for(int i = 1; i < argc; i++){
         string arg = argv[i];
         if(arg == "--ip" || arg == "-i"){

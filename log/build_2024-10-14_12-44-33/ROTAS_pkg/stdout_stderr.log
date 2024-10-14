@@ -1,0 +1,14 @@
+Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  1>Checking Build System
+  Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+  ros2_relay.cpp
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(57,35): error C2065: 'NUM_CAMS': undeclared identifier [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(140,49): warning C4838: conversion from 'unsigned __int64' to 'int' requires a narrowing conversion [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(140,51): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(167,34): warning C4838: conversion from 'unsigned __int64' to 'int' requires a narrowing conversion [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(167,138): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(172,8): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+  Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+  talker.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\talker.exe

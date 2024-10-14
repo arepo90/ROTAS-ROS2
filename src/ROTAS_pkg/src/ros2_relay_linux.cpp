@@ -8,6 +8,8 @@
 #include <cstring>
 #include <cerrno>
 #include <cstdlib>
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/Int32MultiArray.hpp"
 
 using namespace std;
 using namespace cv;

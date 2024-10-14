@@ -1,0 +1,16 @@
+[0.453s] Invoking command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
+[0.625s] Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
+[0.625s] Copyright (C) Microsoft Corporation. All rights reserved.
+[0.625s] 
+[1.328s]   1>Checking Build System
+[1.609s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[1.875s]   ros2_relay.cpp
+[6.031s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(57,35): error C2065: 'NUM_CAMS': undeclared identifier [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[6.031s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(141,49): warning C4838: conversion from 'unsigned __int64' to 'int' requires a narrowing conversion [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[6.031s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(141,51): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[6.031s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(168,34): warning C4838: conversion from 'unsigned __int64' to 'int' requires a narrowing conversion [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[6.031s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(168,138): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[6.031s] C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\src\ROTAS_pkg\src\ros2_relay.cpp(173,8): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data [C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\relay.vcxproj]
+[6.563s]   Building Custom Rule C:/Users/nabet/Desktop/GUI/ROTAS-ROS2/src/ROTAS_pkg/CMakeLists.txt
+[6.719s]   talker.vcxproj -> C:\Users\nabet\Desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg\Release\talker.exe
+[6.781s] Invoked command in 'C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg' returned '1': CL=/MP C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\nabet\desktop\GUI\ROTAS-ROS2\build\ROTAS_pkg --config Release
