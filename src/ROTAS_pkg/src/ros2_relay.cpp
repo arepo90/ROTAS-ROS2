@@ -1,15 +1,8 @@
 /*
     Relay program
     Robotec 2025
-*/
 
-
-/*
-
-        1. fix sockets: one send, one recv
-        2. learn how to publish topics (ideally structs)
-        3. 
-
+    warning, hot garbage code ahead
 */
 
 #ifndef NOMINMAX
