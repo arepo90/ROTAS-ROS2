@@ -1,3 +1,8 @@
+/*
+    this version was last updated on november? 2024, it is incredibly outdated
+    warning, hot garbage ahead 💀
+*/
+
 #include <opencv2/opencv.hpp>
 #include <sys/socket.h>
 #include <arpa/inet.h>
