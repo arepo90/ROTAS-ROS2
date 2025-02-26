@@ -1,8 +1,22 @@
+/*
+    Relay program
+    Robotec 2025
+*/
+
+
+/*
+
+        1. fix sockets: one send, one recv
+        2. learn how to publish topics (ideally structs)
+        3. 
+
+*/
+
 #ifndef NOMINMAX
     #define NOMINMAX
 #endif
 
-#include <opencv2/opencv.hpp>
+#include <portaudio.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
@@ -10,258 +24,399 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <chrono>
+#include <mutex>
+#include <cstdint>
+#include <cstdlib>
+#include <stdlib.h>
+#include <opencv2/opencv.hpp>
+#include <opus/opus.h>
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/float32_multi_array.hpp"
+//#include "pkg_test/msg/Struct.hpp"
 #pragma comment(lib, "ws2_32.lib")
-
 using namespace std;
-using namespace cv;
 
-string SERVER_IP = "127.0.0.1";
-vector<int> CAMS{0};
-int PORT = 8000, MODE = 0, WIDTH = 1280, HEIGHT = 720, QUALITY = 75;
-bool VERBOSE = false;
-vector<float> ROS2_PACKETS(3, 0.0f);
+#define SERVER_IP "127.0.0.1"
+#define SERVER_PORT 8000
+#define AUDIO_SAMPLE_RATE 48000     // 48kHz
+#define AUDIO_FRAME_SIZE 2880       // 2880 bytes = ~120ms
+#define VIDEO_WIDTH 640
+#define VIDEO_HEIGHT 480
+#define VIDEO_FPS 30
 
-bool args(int argc, char* argv[]);
-bool sendPacket(SOCKET socket_fd, vector<uchar>& buffer, int packetNumber);
-bool handshake(SOCKET socket_fd);
-void cnlog(const string& str, int lvl);
+std::vector<int> cam_ports;
 
-void floatCallback(const std_msgs::msg::Float32MultiArray::SharedPtr msg){
-    ROS2_PACKETS = msg->data;
-    stringstream stream;
-    stream << "[ros2] ";
-    for(int i = 0; i < ROS2_PACKETS.size(); i++){
-        stream << i << ":" << ROS2_PACKETS[i] << " ";
+struct RTPHeader{
+    uint16_t cc:4;
+    uint16_t x:1;
+    uint16_t p:1;
+    uint16_t version:2;
+    uint16_t pt:7;
+    uint16_t m:1;
+    uint16_t seq;
+    uint32_t timestamp;
+    uint32_t ssrc;
+};
+
+enum class PayloadType : uint8_t {
+    VIDEO_MJPEG = 97,
+    AUDIO_PCM = 98,
+    ROS2_ARRAY = 99
+};
+
+std::vector<int> scanWebcams(int num_ports = 5){
+    std::vector<int> ports;
+    for(int i = 0; i < num_ports; i++){
+        cv::VideoCapture cap(i);
+        if(cap.isOpened()){
+            ports.push_back(i);
+            cap.release();
+        }
     }
-    cnlog(stream.str(), 2);
+    return ports;
 }
 
-void ros2Thread(){
-    rclcpp::init(0, nullptr);
-    auto node = rclcpp::Node::make_shared("webcam_client_node");
-    auto subscription = node->create_subscription<std_msgs::msg::Float32MultiArray>("float_topic", 10, floatCallback);
+int nMap(int n, int minIn, int maxIn, int minOut, int maxOut){
+    return float((n - minIn)) / float((maxIn - minIn)) * (maxOut - minOut) + minOut;
+}
+
+int nMap(float n, float minIn, float maxIn, float minOut, float maxOut){
+    return float((n - minIn)) / float((maxIn - minIn)) * (maxOut - minOut) + minOut;
+}
+
+class RTPStreamHandler{    
+public:
+    RTPStreamHandler(int port, std::string address, PayloadType type){
+        // ---- Stream info ---
+        stream = new Stream;
+        stream->ssrc = 0;
+        stream->seq_num = 0 & 0xFFFF;
+        stream->timestamp = 0;
+        stream->payload_type = type;
+        // --- UDP Socket init ---
+        // --- send ---
+        send_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+        send_socket_address.sin_family = AF_INET;
+        send_socket_address.sin_port = htons(port);
+        inet_pton(AF_INET, address.c_str(), &send_socket_address.sin_addr);
+        // -- recv --  
+        recv_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+        int recv_buff_size = 1024 * 1024;   // 1MB
+        setsockopt(recv_socket, SOL_SOCKET, SO_RCVBUF, (char*)&recv_buff_size, sizeof(recv_buff_size));
+        recv_socket_address.sin_family = AF_INET;
+        recv_socket_address.sin_port = htons(port + 1);
+        recv_socket_address.sin_addr.s_addr = INADDR_ANY;
+        ::bind(recv_socket, (struct sockaddr*)&recv_socket_address, socket_address_size);
+        
+    }
+    ~RTPStreamHandler(){
+        closesocket(send_socket);
+        closesocket(recv_socket);
+    }
+    void destroy(){
+        delete this;
+    }
+    template <typename T> void sendPacket(std::vector<T> data){
+        // --- RTP header info ---
+        RTPHeader header;
+        header.version = 2;
+        header.p = 0;
+        header.x = 0;
+        header.cc = 0;
+        header.m = 1;
+        header.pt = static_cast<uint8_t>(stream->payload_type);
+        header.seq = stream->seq_num++;
+        header.timestamp = stream->timestamp;
+        header.ssrc = stream->ssrc;
+        stream->timestamp += 100; // fix this shit
+        // --- Prepare packet for send ---
+        std::vector<char> packet((data.size() * sizeof(T)) + sizeof(RTPHeader));
+        std::memcpy(packet.data(), &header, sizeof(RTPHeader));
+        std::memcpy(packet.data() + sizeof(RTPHeader), data.data(), data.size() * sizeof(T));
+        // --- Simulated network degradation (lowkey trash implementation but idc) ---
+        /*
+        this_thread::sleep_for(std::chrono::milliseconds(rand() % 150));    // ~100ms latency
+        if(rand() % 10 == 0) return;    // ~10% packet loss
+        */
+        if(sendto(send_socket, packet.data(), packet.size(), 0, (struct sockaddr*)&socket_address, socket_address_size) == SOCKET_ERROR){
+            std::cout << "[w] Packet send failed. Winsock error: " << WSAGetLastError() << "\n";
+        }
+    }
+    bool handshake(){
+        // -- WIP, untested --
+        /*
+        std::vector<char> packet(cam_ports.size() * sizeof(int));
+        std::memcpy(packet.data(), cam_ports.data(), packet.size());
+        int handshake_msg = -1;
+        while(true){
+            sendto(send_socket, packet.data(), packet.size(), 0, (struct sockaddr*)&socket_address, socket_address_size);
+            fd_set read_set;
+            FD_ZERO(&read_set);
+            FD_SET(recv_socket, &read_set);
+            timeval timeout{ 0, 1000000 };
+            int result = select(0, &read_set, nullptr, nullptr, &timeout);
+            if(result > 0){
+                int bytes_received = recvfrom(recv_socket, (char*)&handshake_msg, sizeof(int), 0, (struct sockaddr*)&socket_address, &socket_address_size);
+                if(bytes_received < sizeof(int)){
+                    std::cout << "[e] Handshake error, bytes received: " << bytes_received << "\n";
+                    continue;
+                }
+                else if(handshake_msg != 200){
+                    std::cout << "[e] Wrong handshake message received: " << handshake_msg << "\n";
+                    return false;
+                }
+                return true;
+            }
+            else{
+                std::cout << "[i] Waiting for server...\n";
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+            }
+        }
+        */
+        return false;
+    }
+    std::vector<int> recvPacket(){
+        std::vector<char> packet(4096);
+        std::cout << "before recvfrom\t";
+        int bytes_received = recvfrom(recv_socket, packet.data(), packet.size(), 0, (struct sockaddr*)&recv_socket_address, &socket_address_size);
+        std::cout << "after, received: " << bytes_received << "\n";
+        if(bytes_received == SOCKET_ERROR){
+            std::cout << "[e] Packet recv failed. Winsock error: " << WSAGetLastError() << "\n";
+            return {};
+        }
+        std::vector<int> data(bytes_received / sizeof(int));
+        std::memcpy(data.data(), packet.data(), bytes_received);
+        return data;
+    }
+private:
+    struct Stream{
+        uint32_t ssrc;
+        uint16_t seq_num;
+        uint32_t timestamp;
+        PayloadType payload_type;
+    };
+    Stream* stream;
+    SOCKET send_socket;
+    SOCKET recv_socket;
+    sockaddr_in send_socket_address;
+    sockaddr_in recv_socket_address;
+    int socket_address_size = sizeof(send_socket_address);
+};
+
+class RelayNode : public rclcpp::Node{
+public:
+    RelayNode() : Node("relay_node"){
+        // --- Sockets + ROS2 startup ---
+        std::cout << "[i] Starting node...\n";
+        WSAStartup(MAKEWORD(2, 2), &wsa_data);
+        base_socket.target_socket = new RTPStreamHandler(SERVER_PORT, SERVER_IP, PayloadType::ROS2_ARRAY);
+        std::cout << "stream started\n";
+        //audio_socket = new RTPStreamHandler(SERVER_PORT + 2, SERVER_IP, PayloadType::AUDIO_PCM);
+        //video_socket = new RTPStreamHandler(SERVER_PORT+2, SERVER_IP, PayloadType::VIDEO_MJPEG);
+        /*
+        for(int i = 0; i < cam_ports.size(); i++){
+            SocketStruct socket_struct;
+            socket_struct.target_socket = new RTPStreamHandler(SERVER_PORT + (2*i) + 4, SERVER_IP, PayloadType::VIDEO_MJPEG);
+            video_sockets.push_back(std::move(socket_struct));
+        }
+        */
+        base_socket.is_recv_running.store(true);
+        base_socket.is_send_running.store(true);
+        //is_video_running = true;
+        /*
+        for(int i = 0; i < video_sockets.size(); i++){
+            video_sockets[i].is_send_running.store(true);
+            video_sockets[i].is_recv_running.store(true);
+        }
+        */
+        stop_flag.store(false);
+        // --- Opus + PortAudio startup ---
+        /*
+        int opus_error;
+        opus_encoder = opus_encoder_create(AUDIO_SAMPLE_RATE, 1, OPUS_APPLICATION_AUDIO, &opus_error);
+        Pa_Initialize();
+        Pa_OpenDefaultStream(&stream, 1, 0, paInt16, AUDIO_SAMPLE_RATE, AUDIO_FRAME_SIZE, audioCallback, this);     // Also initializes audio thread
+        Pa_StartStream(stream);
+        */
+        // --- Threads startup - Program begins ---
+        //video_thread = std::thread(&RelayNode::videoCallback, this);
+        base_socket.send_thread = std::thread(&RelayNode::baseCallback, this);
+        base_socket.recv_thread = std::thread(&RelayNode::recvCallback, this, PayloadType::ROS2_ARRAY, 0);
+        /*
+        for(int i = 0; i < video_sockets.size(); i++){
+            video_sockets[i].send_thread = std::thread(&RelayNode::videoCallback, this, i);
+            video_sockets[i].recv_thread = std::thread(&RelayNode::recvCallback, this, PayloadType::VIDEO_MJPEG, i);
+        }  
+        */
+        ros2_subscription = this->create_subscription<std_msgs::msg::Float32MultiArray>("float_topic", 10, std::bind(&RelayNode::topicCallback, this, std::placeholders::_1));
+        std::cout << "[i] Setup done\n";
+    }
+    ~RelayNode(){
+        // --- Stop loops + join threads + destroy objects ---
+        std::cout << "[i] Closing node...\n";
+        stop_flag.store(true);
+        is_audio_running.store(false);
+        base_socket.is_recv_running.store(false);
+        base_socket.is_send_running.store(false);
+        /*
+        for(int i = 0; i < video_sockets.size(); i++){
+            video_sockets[i].is_recv_running.store(false);
+            video_sockets[i].is_send_running.store(false);
+        }
+        */
+        //is_video_running = false;
+        Pa_StopStream(stream);
+        Pa_CloseStream(stream);
+        Pa_Terminate();
+        opus_encoder_destroy(opus_encoder);
+        if(base_socket.recv_thread.joinable()) base_socket.recv_thread.join();
+        if(base_socket.send_thread.joinable()) base_socket.send_thread.join();
+        //if(video_thread.joinable()) video_thread.join();
+        /*
+        for(int i = 0; i < video_sockets.size(); i++){
+            if(video_sockets[i].recv_thread.joinable()) video_sockets[i].recv_thread.join();
+            if(video_sockets[i].send_thread.joinable()) video_sockets[i].send_thread.join();
+            video_sockets[i].target_socket->destroy();
+        }
+        */
+        //delete video_socket;
+        base_socket.target_socket->destroy();
+        delete audio_socket;
+        WSACleanup();
+    }
+private:
+    static int audioCallback(const void* input, void* output, unsigned long frameCount, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData) {
+        // --- PortAudio callback requires a static function pointer, so this is needed as a middleman ---
+        RelayNode* self = static_cast<RelayNode*>(userData);
+        return self->audioProcess(input, output, frameCount, timeInfo, statusFlags);
+    }
+    int audioProcess(const void* input, void* output, unsigned long frameCount, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags){
+        // --- Callback runs again after paContinue is returned, so no loop required ---
+        if(stop_flag.load()) return paComplete;
+        if(!input || !is_audio_running.load()) return paContinue;
+        // --- Opus encode + send ---
+        unsigned char encoded_data[4096];
+        int encoded_size = opus_encode(opus_encoder, (const opus_int16*)input, AUDIO_FRAME_SIZE, encoded_data, sizeof(encoded_data));
+        if(encoded_size > 0){
+            std::vector<unsigned char> packet(encoded_size);
+            std::memcpy(packet.data(), encoded_data, encoded_size);
+            audio_socket->sendPacket(packet);
+        }
+        return paContinue;
+    }
+    void videoCallback(int id = 0){
+        // -- WIP, untested, should probably work tho --
+        // --- Webcam setup ---
+        cv::VideoCapture cap(cam_ports[id]);
+        cap.set(cv::CAP_PROP_FRAME_WIDTH, VIDEO_WIDTH);
+        cap.set(cv::CAP_PROP_FRAME_HEIGHT, VIDEO_HEIGHT);
+        if(!cap.isOpened()){
+            std::cout << "[e] Cannot open webcam\n";
+            return;
+        }
+        cv::Mat frame;
+        std::vector<unsigned char> compressed_data;
+        // --- MJPEG encode + send ---
+        while(!stop_flag.load()){
+            while(video_sockets[id].is_send_running.load()){
+                cap >> frame;
+                if(frame.empty()) break;
+                cv::imencode(".jpg", frame, compressed_data, {cv::IMWRITE_JPEG_QUALITY, 50});
+                //video_socket->sendPacket(compressed_data);
+                video_sockets[id].target_socket->sendPacket(compressed_data);
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000 / VIDEO_FPS));   // May or may not be necessary (due to dropped frames)
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        }
+        cap.release();
+    }
+    void recvCallback(PayloadType type, int id = 0){
+        // -- WIP, halfway done, need to implement specific data callbacks --
+        while(!stop_flag.load()){
+            if(type == PayloadType::ROS2_ARRAY){
+                while(base_socket.is_recv_running.load()){
+                    std::vector<int> data = base_socket.target_socket->recvPacket();
+                    if(data.size() <= 0 || data[0] != 200){
+                        std::cout << "[e] Corrupted packet received on base socket\n";
+                        continue;
+                    }
+                    // do stuff with recv data
+                }
+            }
+            else{
+                while(video_sockets[id].is_recv_running.load()){
+                    std::vector<int> data = video_sockets[id].target_socket->recvPacket();
+                    if(data.size() <= 0 || data[0] != 200){
+                        std::cout << "[e] Corrupted packet received on video" << id << " socket\n";
+                        continue;
+                    }
+                    video_sockets[id].is_send_running.store(data[1]);
+                }
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        }
+    }
+    void topicCallback(const std_msgs::msg::Float32MultiArray::SharedPtr msg) {
+        // --- Mutex lock for thread-safe updates ---
+        std::lock_guard<std::mutex> lock(data_mutex);
+        latest_data = msg->data;
+    }
+    void baseCallback(){
+        while(base_socket.is_send_running.load()){
+            // --- Mutex lock for thread-safe access ---
+            {
+                std::lock_guard<std::mutex> lock(data_mutex);
+                base_socket.target_socket->sendPacket(latest_data);
+            }
+            this_thread::sleep_for(chrono::milliseconds(500));  // Immediate updates are not necessary
+        }
+    }
+    struct SocketStruct{
+        RTPStreamHandler* target_socket;
+        std::thread send_thread;
+        std::thread recv_thread;
+        std::atomic<bool> is_send_running;
+        std::atomic<bool> is_recv_running;
+        // --- Thingamajig to transfer std::thread ownership ---
+        SocketStruct() : target_socket(nullptr) {}
+        SocketStruct(SocketStruct&& other) noexcept
+            : recv_thread(std::move(other.recv_thread)),
+              send_thread(std::move(other.send_thread)),
+              target_socket(std::move(other.target_socket)){}
+        SocketStruct& operator=(SocketStruct&& other) noexcept {
+            if(this != &other){
+                recv_thread = std::move(other.recv_thread);
+                send_thread = std::move(other.send_thread);
+                target_socket = std::move(other.target_socket);
+            }
+            return *this;
+        }
+        SocketStruct(const SocketStruct&) = delete;
+        SocketStruct& operator=(const SocketStruct&) = delete;
+    };
+    rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr ros2_subscription;
+    std::vector<float> latest_data;
+    std::vector<int> cam_ports;
+    std::mutex data_mutex;
+    std::mutex flag_mutex;
+    std::atomic<bool> is_audio_running;
+    std::atomic<bool> stop_flag;
+    PaStream* stream;
+    PaError err;
+    OpusEncoder* opus_encoder;
+    WSADATA wsa_data;
+    RTPStreamHandler* audio_socket;
+    SocketStruct base_socket;
+    std::vector<SocketStruct> video_sockets;
+};
+
+int main(int argc, char** argv){
+    //cam_ports = scanWebcams();
+    // --- RelayNode handles everything ---
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<RelayNode>();
     rclcpp::spin(node);
     rclcpp::shutdown();
-}
-
-int main(int argc, char* argv[]){
-    if(args(argc, argv)) return -1;
-    cnlog("[i] Initializing client...", 2);
-
-    WSADATA wsaData;
-    u_long socket_mode = 1;
-    vector<SOCKET> socket_fds(CAMS.size());
-    vector<VideoCapture> sources(CAMS.size());
-    vector<vector<uchar>> buffers(CAMS.size());
-    vector<int> packet_numbers(CAMS.size(), 0);
-
-    if(WSAStartup(MAKEWORD(2, 2), &wsaData) != 0){
-        cnlog("[e] Failed to initialize Winsock", 0);
-        return -1;
-    }
-
-    cnlog("[i] Initializing capture devices...", 2);
-    for(int i = 0; i < CAMS.size(); i++){
-        sources[i].open(CAMS[i]);
-        if(!sources[i].isOpened()){
-            cnlog("[e] Could not open source " + to_string(i), 0);
-            WSACleanup();
-            return -1;
-        }
-        sources[i].set(CAP_PROP_FRAME_WIDTH, WIDTH);
-        sources[i].set(CAP_PROP_FRAME_HEIGHT, HEIGHT);
-
-        socket_fds[i] = socket(AF_INET, SOCK_STREAM, 0);
-        if(socket_fds[i] == INVALID_SOCKET){
-            cnlog("[e] Could not create socket for source " + to_string(i), 0);
-            WSACleanup();
-            return -1;
-        }
-        sockaddr_in server_addr;
-        server_addr.sin_family = AF_INET;
-        server_addr.sin_port = htons(PORT + i);
-        inet_pton(AF_INET, SERVER_IP.c_str(), &server_addr.sin_addr);
-        connect(socket_fds[i], (sockaddr*)&server_addr, sizeof(server_addr));
-
-        if(i == 0 && !handshake(socket_fds[i])){
-            for(int j = 0; j < CAMS.size(); j++){
-                closesocket(socket_fds[i]);
-                sources[j].release();
-            }
-            WSACleanup();
-            return -1;
-        }
-    }
-
-    thread rosThread(ros2Thread);
-
-    cnlog("[i] Starting stream...", 2);
-    while(1){
-        for(int i = 0; i < CAMS.size(); i++){
-            Mat frame;
-            sources[i] >> frame;
-            if(frame.empty()){
-                cnlog("[w] Source " + to_string(i) + " captured an empty frame", 1);
-                continue;
-            }
-            buffers[i].clear();
-            imencode(".jpg", frame, buffers[i], {IMWRITE_JPEG_QUALITY, QUALITY});
-            if(!sendPacket(socket_fds[i], buffers[i], packet_numbers[i]++)){
-                cnlog("[w] Failed to send frame from source " + to_string(i), 1);
-                return 1;
-            }
-            packet_numbers[i] %= 100;
-        }
-        Sleep(20);
-    }
-
-    cnlog("[i] Shutting down client...", 2);
-    for(int i = 0; i < CAMS.size(); i++){
-        sources[i].release();
-        closesocket(socket_fds[i]);
-    }
-    rosThread.join();
-    WSACleanup();
-    return 0;
-}
-
-void cnlog(const string& str, int lvl){
-    if(VERBOSE || lvl == 0) cout << str << '\n';
-}
-
-bool handshake(SOCKET socket_fd){
-    cnlog("[i] Starting handshake...", 2);
-
-    int handshakeMessage[] = {0, MODE, CAMS.size()}, handshakeAck = 0;
-    if(send(socket_fd, (char*)handshakeMessage, sizeof(handshakeMessage), 0) == SOCKET_ERROR){
-        cnlog("[e] Could not send handshake", 0);
-        return false;
-    }
-
-    while(1){
-        if(recv(socket_fd, (char*)&handshakeAck, sizeof(handshakeAck), 0) <= 0){ 
-            if(WSAGetLastError() == WSAEWOULDBLOCK){
-                Sleep(50);
-                continue; 
-            } else {
-                cnlog("[e] Did not receive handshake acknowledgment. Code: " + to_string(WSAGetLastError()), 0);
-                return false;
-            }
-        } else break;
-    }
-    if(handshakeAck != 400){
-        cnlog("[e] Invalid handshake response: " + to_string(handshakeAck), 0);
-        return false;
-    }
-
-    cnlog("[i] Handshake complete", 2);
-    return true;
-}
-
-bool sendPacket(SOCKET socket_fd, vector<uchar>& buffer, int packet_number){
-    int metadata[] = {buffer.size(), packet_number, int(ROS2_PACKETS[0]), int(ROS2_PACKETS[1]), int(ROS2_PACKETS[2])};
-    if(send(socket_fd, (char*)metadata, sizeof(metadata), 0) == SOCKET_ERROR){
-        cnlog("[e] Metadata send failed. Code: " + to_string(WSAGetLastError()), 0);
-        return false;
-    }
-    if(send(socket_fd, (char*)buffer.data(), buffer.size(), 0) == SOCKET_ERROR){
-        cnlog("[e] Frame send failed. Code: " + to_string(WSAGetLastError()), 0);
-        return false;
-    }
-    return true;
-}
-
-bool args(int argc, char* argv[]){
-    for(int i = 1; i < argc; i++){
-        string arg = argv[i];
-        if(arg == "--ip" || arg == "-i"){
-            if(i+1 < argc) SERVER_IP = argv[++i];
-            else{
-                cout << "[e] --ip requires an ip address\n";
-                return 1;
-            }
-        }
-        else if(arg == "--port" || arg == "-p"){
-            if(i+1 < argc) PORT = atoi(argv[++i]);
-            else{
-                cout << "[e] --port requires a port number\n";
-                return 1;
-            }
-        }
-        else if(arg == "--width" || arg == "-w"){
-            if(i+1 < argc) WIDTH = atoi(argv[++i]);
-            else{
-                cout << "[e] --width requires a horizontal resolution\n";
-                return 1;
-            }
-        }
-        else if(arg == "--height" || arg == "-h"){
-            if(i+1 < argc) HEIGHT = atoi(argv[++i]);
-            else{
-                cout << "[e] --height requires a vertical resolution\n";
-                return 1;
-            }
-        }
-        else if(arg == "--cams" || arg == "-c"){
-            int n = 0;
-            if(i+3 <= argc){
-                n = atoi(argv[i+1]);
-                if(argc < i+n){
-                    cout << "[e] Incomplete camera list\n";
-                    return 1;
-                }
-                CAMS.clear();
-                for(int j = 0; j < n; j++){
-                    CAMS.push_back(atoi(argv[i+j+2]));
-                }
-            }
-            else{
-                cout << "[e] --cams requires a camera list\n";
-                return 1;
-            }
-            i += n+1;
-        }
-        else if(arg == "--mode" || arg == "-m"){
-            if(i+1 < argc) MODE = atoi(argv[++i]);
-            else{
-                cout << "[e] --mode requires a number\n";
-                return 1;
-            }
-        }
-        else if(arg == "--quality" || arg == "-q"){
-            if(i+1 < argc) QUALITY = atoi(argv[++i]);
-            else{
-                cout << "[e] --quality requires a camera amount\n";
-                return 1;
-            }
-        }
-        else if(arg == "--help" || arg == "-H"){
-            cout << "Options\n"
-                 << "  -v\t\t\t= Verbose output\n"
-                 << "  -H\t\t\t= Displays available options\n"
-                 << "  -i <address>\t\t= Server IP address\n"
-                 << "  -p <number>\t\t= Server TCP port number\n"
-                 << "  -w <pixels>\t\t= Video horizontal resolution\n"
-                 << "  -h <pixels>\t\t= Video vertical resolution\n"
-                 << "  -c <number> <list>\t\t= Camera inputs to transmit\n"
-                 << "  -q <number>\t\t= Transmission video quality (0-100)\n";
-            return 1;
-        }
-        else if(arg == "--verbose" || arg == "-v") VERBOSE = true;
-        else{
-            cout << "[e] Invalid argument detected\n\nOptions\n"
-                 << "  -v\t\t\t= Verbose output\n"
-                 << "  -H\t\t\t= Displays available options\n"
-                 << "  -i <address>\t\t= Server IP address\n"
-                 << "  -p <number>\t\t= Server TCP port number\n"
-                 << "  -w <pixels>\t\t= Video horizontal resolution\n"
-                 << "  -h <pixels>\t\t= Video vertical resolution\n"
-                 << "  -c <number> <list>\t\t= Camera inputs to transmit\n"
-                 << "  -q <number>\t\t= Transmission video quality (0-100)\n";
-            return 1;
-        }
-    }
     return 0;
 }
