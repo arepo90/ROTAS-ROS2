@@ -1,5 +1,7 @@
 # ROTAS + ROS2
 
+THIS README IS UNBELIEVABLY OUTDATED, IM WORKING ON IT ok ?😭😭😭😭
+
 Full implementation of ROTAS and ROS2 for real-time video streaming and information sharing from ROS2 nodes to ROTAS server applications. 
 
 ## Prerequisites
