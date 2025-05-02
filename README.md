@@ -1,6 +1,7 @@
-# ROTAS + ROS2
+> [!WARNING]
+> This repository is vastly outdated compared to its [final implementation](https://github.com/arepo90/rescue_relay). Several updates like UDP over TCP, packet fragmentation, ROS2 implementation, etc. are not and will not be added here anytime soon
 
-THIS README IS UNBELIEVABLY OUTDATED, IM WORKING ON IT ok ?😭😭😭😭
+# ROTAS + ROS2
 
 Full implementation of ROTAS and ROS2 for real-time video streaming and information sharing from ROS2 nodes to ROTAS server applications. 
 
